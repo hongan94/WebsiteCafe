@@ -1,0 +1,55 @@
+.main-menu
+  .container.main-menu
+    .row
+        nav.navbar.positive
+          .container
+            .navbar.navbar-header
+              button.navbar-toggle data-toggle='collapse' data-target='#main-menu' type='button'
+                span.sr-only
+                  | Menu
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+              #main-menu.collapse.navbar-collapse
+                ul.nav.navbar-nav
+                  li
+                    a
+                      | &nbsp;
+                  li.dropdown
+                    a.dropdown-toggle data-toggle='dropdown'
+                      | Espresso &nbsp;
+                      span.caret
+                    ul.dropdown-menu
+                      li
+                        a
+                          | Espress 1
+                      li
+                        a
+                          | Espress 2
+                      li
+                        a
+                          | Espress 3
+                  li
+                    a
+                      | Coffee
+                  li
+                    a
+                      | Organic Coffee
+                  li
+                    a
+                      | Coffee with Milk
+                  li
+                    a
+                      | &nbsp;
+javascript:
+  $(function() {
+    $(window).scroll(function(){
+      var Top = $('.positive').height();
+      if($(this).scrollTop() >= Top) {
+        $('.positive').addClass('navbar-fixed-top');
+      }
+      else {
+        $('.positive').removeClass('navbar-fixed-top');
+      }
+    });
+  });
