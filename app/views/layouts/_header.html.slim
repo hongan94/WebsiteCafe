@@ -1,42 +1,101 @@
 
-nav.navbar.background-navbar role='nagivation'
-  .container.header
-    .navbar.navbar-header
-      button.navbar-toggle data-toggle='collapse' data-target='#menu' type='button'
-        span.sr-only
-          | Menu
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      #menu.collapse.navbar-collapse
-        ul.nav.navbar-nav
-          li
-            a
-              span.glyphicon.glyphicon-home
-              |  Home
-          li
-            a
-              | Menu Today
-          li
-            a
-              | Food
-          li
-            a
-              | Coffee
-          li
-            a
-              | Image
-        ul.nav.navbar-nav.navbar-right
-          li
-            a
-              span.glyphicon.glyphicon-shopping-cart
-          li
-            a
-              span.glyphicon.glyphicon-user
-        form.navbar-form.navbar-right
-          .form-group
-            .input-group
-              input class='form-control' type='text' placeholder='Search'
-              span.input-group-addon
-                span.glyphicon.glyphicon-search
+.header-background
+    nav.navbar.background-navbar role='nagivation'
+      .container.header
+        .navbar.navbar-header
+          button.navbar-toggle data-toggle='collapse' data-target='#main-menu' type='button'
+            span.sr-only
+              | Menu
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          .collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li
+                a
+                  span.glyphicon.glyphicon-home
+                  |  Home
+              li
+                a
+                  | Menu Today
+              li
+                a
+                  | Food
+              li
+                a
+                  | Coffee
+              li
+                a
+                  | Image
+            ul.nav.navbar-nav.navbar-right
+              li
+                a
+                  span.glyphicon.glyphicon-shopping-cart
+              li
+                a
+                  span.glyphicon.glyphicon-user
+            form.navbar-form.navbar-right
+              .form-group
+                .input-group
+                  input class='form-control' type='text' placeholder='Search'
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-search
 
+    .main-menu
+      .container.main-menu
+        .row
+            nav.navbar.positive
+              .container
+                .navbar.navbar-header
+                  / button.navbar-toggle data-toggle='collapse' data-target='#main-menu' type='button'
+                  /   span.sr-only
+                  /     | Menu
+                  /   span.icon-bar
+                  /   span.icon-bar
+                  /   span.icon-bar
+                  #main-menu.collapse.navbar-collapse
+                    ul.nav.navbar-nav
+                      li.dropdown
+                        a.dropdown-toggle data-toggle='dropdown'
+                          | Espresso &nbsp;
+                          span.caret
+                        ul.dropdown-menu
+                          li
+                            a
+                              | Espress 1
+                          li
+                            a
+                              | Espress 2
+                          li
+                            a
+                              | Espress 3
+                      li
+                        a
+                          | Coffee
+                      li
+                        a
+                          | Organic Coffee
+                      li
+                        a
+                          | Coffee with Milk
+    .index-header-block
+              p.title
+                | Find the Most
+              h3.banner-title
+                | Exclusive coffee Blends
+
+javascript:
+  $(function() {
+    $(window).scroll(function(){
+      var Top = $('.positive').height();
+      if($(this).scrollTop() >= Top) {
+        $('.positive').addClass('navbar-fixed-top background-navbar');
+      }
+      else {
+        $('.positive').removeClass('navbar-fixed-top background-navbar');
+      }
+    });
+  });
+  $(function(){
+
+  });

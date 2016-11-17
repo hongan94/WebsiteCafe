@@ -1,5 +1,26 @@
-.container
-  span
-    - (1..40).each do |f|
-      = f
-      br
+.container-fluid
+  .banner
+    .row
+      .image1.pull-left
+        .baner1
+          = image_tag('baner1.jpg', class: 'img-responsive')
+      .title1.pull-right
+        .title-baner1
+          h3
+            | Enjoy Diffenence
+          p
+            | Unlike the grocery store, you'll always know exactly when we hand-roasted your fresh Craft Coffee, and you'll receive it just days after we roast it. We stand behind our recommended blends with our 100% Satisfaction Guarantee.
+          button
+            | CLICK HERE
+    .row
+      .title2.pull-left
+        .title-baner2
+          h3
+            | Convenient delivery
+          p
+            | Skip the store, skip the hassle. Craft Coffee arrives on the delivery schedule that’s just right for your needs. You can hold or change your deliveries at any time.
+          button
+            | CLICK HERE
+      .image2.pull-right
+        .baner2
+          = image_tag('baner2.jpg', class: 'img-responsive')
