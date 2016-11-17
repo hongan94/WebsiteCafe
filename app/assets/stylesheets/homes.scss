@@ -1,0 +1,61 @@
+// Place all the styles related to the homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.footer-home {
+  h4 {
+    padding-bottom: 25px;
+    border-bottom: 1px solid red;
+  }
+  ul {
+    position: relative;
+    left: -37px;
+    list-style: none;
+  }
+}
+nav {
+  .header {
+    li {
+      border-right: 1px solid #777;
+    }
+    .navbar {
+        width: 100%;
+    }
+  }
+}
+.main-menu {
+  .navbar-header {
+    width: 100%;
+  }
+  li {
+    list-style: none;
+    margin-left: 0px !important;
+    text-decoration: none;
+    .dropdown-menu {
+      li {
+        border: none;
+      }
+    }
+  }
+  .nav {
+    li {
+      border: 1px solid green;
+    }
+  }
+  .navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+  }
+
+  .navbar .navbar-collapse {
+    text-align: center;
+  }
+}
+.over {
+  background: #fff;
+  opacity: 0.5;
+}
+.background-navbar {
+  background-color: hsl(0, 15%, 19%);
+}
