@@ -54,4 +54,14 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   resources :homes
+  resources :products do
+    member do
+      get 'add'
+    end
+  end
+  resources :carts, only: :show do
+    collection do
+      put :add
+    end
+  end
 end

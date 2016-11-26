@@ -24,3 +24,21 @@
       .image2.pull-right
         .baner2
           = image_tag('baner2.jpg', class: 'img-responsive')
+    .container
+      .row
+        .product
+          - @product.each do |f|
+            .col-sm-4
+              .image-item
+                = link_to
+                  = image_tag('logo.jpg')
+              .title-text
+                h5 = f.name
+                h4 = f.price.to_i
+                h6
+                 | Quantity:
+                 = number_field(:f,:quanitty, in: 0..1000, step: 1, class: "quantity_#{f.id}")
+                = link_to '' , type: 'submit', remote: true, method: 'put',id: "#{f.id}"
+                  | Add to Cart &nbsp;
+                  span.glyphicon.glyphicon-shopping-cart
+

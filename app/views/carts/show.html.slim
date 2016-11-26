@@ -1,0 +1,45 @@
+html
+  head
+    title WebsiteCafe
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    h1
+      | Your Cart
+    .table-responsive
+      table.table.table-bordered
+        thead
+          tr
+            th
+              | Name:
+            th
+              | Quantity:
+            th
+              | Price
+            th
+              | Total
+            th
+              | Action
+        tbody
+          - @item  = CartItem.where(owner_id: session[:cart_id])
+          - @total = 0
+          - @item.each do |f|
+            tr
+              td
+                = Product.find(f.item_id).name
+              td
+                = f.quantity
+              td
+                = f.price_cents
+              td
+                = f.total_price
+              td
+                span.glyphicon.glyphicon-pencil
+                span.glyphicon.glyphicon-remove
+            - @total += f.total_price
+          tr
+              td colspan='5' style ="text-align: center; color: red;"
+                | Total:
+                = @total
