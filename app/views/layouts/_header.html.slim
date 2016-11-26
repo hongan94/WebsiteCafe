@@ -29,7 +29,9 @@
                   | Image
             ul.nav.navbar-nav.navbar-right
               li
-                a
+                = link_to cart_path(session[:cart_id])
+                  = CartItem.where(owner_id: session[:cart_id]).count
+                  | &nbsp;
                   span.glyphicon.glyphicon-shopping-cart
               li
                 a
@@ -97,5 +99,7 @@ javascript:
     });
   });
   $(function(){
-
+    $('ul li a').hover(function(){
+      $(this).addClass('sweep-to-bottom');
+    });
   });
