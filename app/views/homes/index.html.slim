@@ -38,7 +38,56 @@
                 h6
                  | Quantity:
                  = number_field(:f,:quanitty, in: 0..1000, step: 1, class: "quantity_#{f.id}")
-                = link_to '' , type: 'submit', remote: true, method: 'put',id: "#{f.id}"
+                = link_to '' , type: 'submit', remote: true, method: 'put',id: "#{f.id}", data: { toggle: 'modal', target: '.confirm_buy'}
                   | Add to Cart &nbsp;
                   span.glyphicon.glyphicon-shopping-cart
+  = render 'confirm_buy'
+javascript:
+  $(function(){
+    $('a[type="submit"]').click(function(){
+      var id = $(this).attr('id');
+      var quantity = $('.quantity_'+id+'').val();
+      if(quantity == 0) {
+        $('.confirm_buy').find('span').text('Please enter quantity');
+        $('.sure').addClass('hide');
+        $('.confirm_buy').css('display', 'block', 'top','400px');
+        $('.modal').css("top", '30%');
+      }else {
+        $('.confirm_buy').css('display', 'block', 'top','400px');
+        $('.modal').css("top", '30%');
+          $('.sure').click(function(){
+            var info = { id: id, quantity: quantity}
+              $.ajax ({
+                method: 'PUT',
+                url: '/carts/add',
+                data: info,
+                dataType: 'script',
+              });
+          });
+      }
+    });
+  });
+
+  $(function(){
+    $('a[type="submit"]').hover(function(){
+        $(this).addClass('hover-add-cart');
+    });
+  });
+
+    $(function() {
+    $(window).scroll(function(){
+      var Top = $('.positive').height();
+      if($(this).scrollTop() >= Top) {
+        $('.positive').addClass('navbar-fixed-top background-navbar');
+      }
+      else {
+        $('.positive').removeClass('navbar-fixed-top background-navbar');
+      }
+    });
+  });
+  $(function(){
+    $('.navbar-collapse ul li a').hover(function(){
+      $(this).addClass('sweep-to-bottom');
+    });
+  });
 

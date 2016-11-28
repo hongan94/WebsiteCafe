@@ -6,40 +6,90 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    h1
-      | Your Cart
-    .table-responsive
-      table.table.table-bordered
-        thead
-          tr
-            th
-              | Name:
-            th
-              | Quantity:
-            th
-              | Price
-            th
-              | Total
-            th
-              | Action
-        tbody
-          - @item  = CartItem.where(owner_id: session[:cart_id])
-          - @total = 0
-          - @item.each do |f|
+    .container
+      h1
+        | Your Cart
+        h6 style = 'color: green;'
+          = flash[:notice] if flash[:notice]
+      .table-responsive
+        table.table.table-bordered
+          thead
             tr
-              td
-                = Product.find(f.item_id).name
-              td
-                = f.quantity
-              td
-                = f.price_cents
-              td
-                = f.total_price
-              td
-                span.glyphicon.glyphicon-pencil
-                span.glyphicon.glyphicon-remove
-            - @total += f.total_price
-          tr
-              td colspan='5' style ="text-align: center; color: red;"
-                | Total:
-                = @total
+              th
+                | Name:
+              th
+                | Quantity:
+              th
+                | Price
+              th
+                | Total
+              th
+                | Action
+          tbody
+            - @total = 0
+            - @item.each do |f|
+              tr
+                td
+                  = Product.find(f.item_id).name
+                td
+                  = number_field(:f,:quantity, in: 0..1000, value: f.quantity, readonly: true, id: f.id, class: "quantity_edit_#{f.id}")
+                td
+                  = f.price_cents
+                td
+                  = f.total_price
+                td
+                  span.glyphicon.glyphicon-pencil.edit-quantity
+                  = link_to '', remote: true, method: :put, id: f.id , class: "save_quantity"
+                    span.glyphicon.glyphicon-save-file
+                  = link_to carts_path(id: f.id), remote: true, method: :delete, data: { confirm: 'Are you sure?' }
+                    span.glyphicon.glyphicon-remove.delete-item
+
+              - @total += f.total_price
+            tr
+                td colspan='5' style ="text-align: center; color: red;"
+                  | Total:
+                  = @total
+                  = link_to '', type: "button"
+                    | Payment
+                  = link_to '#', type: 'button', remote: true, data: { toggle: 'modal', target: '.confirm_buy'}, class: 'remove_all'
+                    | Empty Cart
+      = render 'homes/confirm_buy'
+javascript:
+  $(function(){
+    $('span.edit-quantity').click(function(){
+      $(this).next().css('display', 'inline-block');
+      var edit = $(this).parent().parent().find('input');
+      edit.attr('readonly', false);
+      edit.css('border', '1px solid #FF0000')
+    });
+  });
+
+  $(function(){
+    $('td').on('click', '.save_quantity', function(e){
+      e.preventDefault();
+      $(this).css('display','none');
+      var id = $(this).attr('id');
+      var save = $(this).parent().parent().find('input');
+      save.css("readonly",true)
+      var quantity = $('.quantity_edit_'+id+'').val();
+      var info = { id: id, quantity: quantity}
+        $.ajax ({
+          method: 'PUT',
+          url: '/carts',
+          data: info,
+        });
+    });
+  });
+
+  $(function(){
+    $('.remove_all').click(function(){
+        $('.modal').css('top','30%');
+        $('.sure').click(function(){
+          $.ajax({
+            method: 'DELETE',
+            url: '/carts',
+            data: '',
+          });
+        });
+    });
+  })

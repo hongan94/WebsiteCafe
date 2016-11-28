@@ -1,44 +1,56 @@
 .container
   .row.footer-home
-    .col-xs-6.col-sm-3.col-md-2
-      h4
-        | INFORMATION
-      ul
-        li
-          a
-            | About US
-      ul
-        li
-          a
-            | Customer Service
-    .col-xs-6.col-sm-3.col-md-2
-      h4
-        | WHY BUY FROM US
-      ul
-        li
-          a
-            | About US
-      ul
-        li
-          a
-            | Customer Service
-    .clearfix.visible-xs-block
-    .col-xs-6.col-sm-3.col-md-2
-      h4
-        | MY ACCOUNT
-      ul
-        li
-          a
-            | About US
-      ul
-        li
-          a
-            | Customer Service
-    .col-xs-6.col-sm-3.col-md-2
-      h4
-        | FOLLOW US
-    .clearfix.visible-xs-block
-    .clearfix.visible-sm-block
-    .col-xs-6.col-sm-3.col-md-2
-      h4
-        | FACEBOOK PAGE
+    .col-sm-8
+      .col-sm-6
+        h4
+          | INFORMATION
+        ul
+          li
+            a
+              | Phone: 0906512162
+        ul
+          li
+            a
+              | Email: snine1994@gmail.com
+      .col-sm-6
+        h4
+          | WHY BUY FROM US
+        ul
+          li
+            a
+              | About US
+        ul
+          li
+            a
+              | Customer Service
+      .clearfix.visible-sm-block
+      .col-sm-6
+        h4
+          | MY ACCOUNT
+        ul
+          li
+            a
+              | About US
+        ul
+          li
+            a
+              | Customer Service
+      .col-sm-6
+        h4
+          | FOLLOW US
+      .clearfix.visible-sm-block
+    .col-sm-4
+        | GOOGLEMAP
+        #map-canvas
+
+javascript:
+    function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(10.829897, 106.766314),
+          zoom: 10,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
