@@ -3,6 +3,8 @@
     nav.navbar.background-navbar role='nagivation'
       .container.header
         .navbar.navbar-header
+          = link_to '', class: 'navbar-brand'
+
           button.navbar-toggle data-toggle='collapse' data-target='#main-menu' type='button'
             span.sr-only
               | Menu
@@ -35,6 +37,7 @@
                   span.glyphicon.glyphicon-shopping-cart
               li
                 a
+                  | &nbsp;
                   span.glyphicon.glyphicon-user
             form.navbar-form.navbar-right
               .form-group
@@ -57,11 +60,11 @@
                   /   span.icon-bar
                   #main-menu.collapse.navbar-collapse
                     ul.nav.navbar-nav
-                      li.dropdown
-                        a.dropdown-toggle data-toggle='dropdown'
+                      li
+                        a.espresso
                           | Espresso &nbsp;
                           span.caret
-                        ul.dropdown-menu
+                        ul#dropdown-menu.sub-menu1
                           li
                             a
                               | Espress 1
@@ -87,19 +90,9 @@
                 | Exclusive coffee Blends
 
 javascript:
-  $(function() {
-    $(window).scroll(function(){
-      var Top = $('.positive').height();
-      if($(this).scrollTop() >= Top) {
-        $('.positive').addClass('navbar-fixed-top background-navbar');
-      }
-      else {
-        $('.positive').removeClass('navbar-fixed-top background-navbar');
-      }
-    });
-  });
   $(function(){
-    $('ul li a').hover(function(){
-      $(this).addClass('sweep-to-bottom');
+    $('.espresso').click(function(){
+      $(this).toggleClass('backbround-blue');
+      $('#dropdown-menu').slideToggle('fast');
     });
   });

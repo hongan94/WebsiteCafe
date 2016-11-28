@@ -62,6 +62,8 @@ Rails.application.routes.draw do
   resources :carts, only: :show do
     collection do
       put :add
+      put :update
+      delete :destroy
     end
   end
 end
